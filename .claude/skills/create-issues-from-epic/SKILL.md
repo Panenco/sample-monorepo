@@ -14,7 +14,9 @@ Turns a plan written by `/spec-epic` into GitHub issues: one **epic issue** for 
 1. **GitHub CLI:** `gh auth status` must succeed. If `gh` is missing, tell the user to install it (macOS `brew install gh`, Windows `winget install --id GitHub.cli`), run `gh auth login`, and stop.
 2. **The plan exists:** `docs/planned/<feature>/` has a `<feature>-prd.md`. If it doesn't, stop.
 3. **The plan is on GitHub:** the issues link to the plan files, so they must be pushed to `main`. Check with `git fetch` then `git log origin/main -- docs/planned/<feature>/`. If they aren't there yet, say so and stop. The user can push them first or share them with `/create-pr`.
-4. **No duplicates:** before creating any issue, search for one with the same title (`gh issue list --state all --search "<title> in:title"`). If it exists, reuse its number and don't create it again. That makes the skill safe to run twice.
+4. **No duplicates:** before creating any issue, look for one with exactly the same title:
+   `gh issue list --state all --search "<title> in:title" --json number,title -q '.[] | select(.title == "<title>") | .number'`.
+   GitHub's search is fuzzy, so only an exact title match counts. If it exists, reuse its number and leave that issue as it is. Never rewrite an existing issue: the team may have edited it. That makes the skill safe to run twice.
 
 ## 1. Summarize
 
@@ -27,7 +29,7 @@ Read the PRD, the architecture doc if there is one, and the slices in `slices/`,
   02. ...
 ```
 
-**Stop and ask the user to confirm** before creating anything.
+Mark the issues that already exist (with their numbers). If all of them exist, say so and stop: there's nothing to create. Otherwise **stop and ask the user to confirm** before creating anything.
 
 ## 2. Epic issue
 
@@ -56,7 +58,7 @@ Title: `[Epic] <Feature name>`. Body:
 <filled in by step 4>
 ```
 
-Create it with `gh issue create --title "..." --body "..."`, and keep its number as EPIC.
+Create it with `gh issue create --title "..." --body "..."`. It prints the issue's URL: the number at the end is EPIC.
 
 Build the links from the repository URL (`gh repo view --json url -q .url`) plus `/blob/main/<path>`.
 
@@ -82,7 +84,7 @@ Part of #<EPIC>
 
 ## 4. Link them up
 
-Update the epic issue's body (`gh issue edit <EPIC> --body "..."`): under `## Slices`, add one line per slice issue in order, `- [ ] #<number> <slice name>`.
+Under `## Slices` in the epic issue, there must be one line per slice issue, in order: `- [ ] #<number> <slice name>`. Add only the lines that are missing, and keep the rest of the body as it is (`gh issue view <EPIC> --json body`, then `gh issue edit <EPIC> --body "..."`).
 
 ## Done
 
