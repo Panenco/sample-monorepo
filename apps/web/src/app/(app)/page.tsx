@@ -100,17 +100,6 @@ const SKILL_GROUPS = [
       },
     ],
   },
-  {
-    title: 'Used by Claude on its own',
-    skills: [
-      {
-        name: 'create-api-endpoint',
-        text: 'How Claude adds API endpoints. You just describe what you need.',
-      },
-      { name: 'create-nextjs-page', text: 'How Claude adds pages to the website.' },
-      { name: 'grilling', text: 'The questioning behind /grill-me and /spec-epic.' },
-    ],
-  },
 ];
 
 export default function HomePage() {
