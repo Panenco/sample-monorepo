@@ -41,12 +41,12 @@ breaks), `/tdd` (test-first).
 
 ## GitHub (optional)
 
-Teams can use GitHub issues and pull requests, but nothing requires them. **Never push, create an issue or open a pull request without asking the user first.**
+The workflow skills only commit. Two separate skills connect it to GitHub, for teams that want them:
 
-- **Check the GitHub CLI:** `gh auth status`. If `gh` is missing, the user can install it (macOS `brew install gh`, Windows `winget install --id GitHub.cli`) and run `gh auth login` once, or skip issues.
-- **Issues** (from `spec-epic`): one per slice, with `gh issue create --title "<feature> <NN>: <slice name>" --body "<goal, Done when list, path of the slice file>"`.
-- **Pull requests** (from `build-slice` and `consolidate-epic`): `git push -u origin <branch>`, then `gh pr create --fill` with the slice file's path (and `Closes #<number>` when it has an issue) in the description. Without `gh`, show the user the "Create a pull request" link that GitHub prints after the push.
-- A pull request merges into `main` after CI passes and a teammate approves it.
+- `/create-issues-from-epic <feature>`: one GitHub issue for the plan, and one per slice.
+- `/create-pr [issue]`: a branch, a commit, a push and a pull request for the current work.
+
+Use them only when the user asks. Never push, create issues or open pull requests on your own.
 
 ## Starting the app
 

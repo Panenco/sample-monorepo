@@ -16,4 +16,6 @@ How the product works today, why it was built this way, and the plans for what's
 2. `/build-slice <feature>`: build the next slice with tests and commit it. Repeat for each slice.
 3. `/consolidate-epic <feature>`: update `system/`, record lasting decisions in `adr/`, delete the plan.
 
+Working as a team on GitHub? `/create-issues-from-epic <feature>` turns the slices into issues, and `/create-pr` shares each slice as a pull request.
+
 Small changes skip the plan (`.claude/rules/docs.md` says where the line is): build them and update `system/features/` in the same commit.

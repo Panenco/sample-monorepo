@@ -1,7 +1,5 @@
 # 01: <slice name>
 
-<!-- Issue: #<number>   (only when the team uses GitHub issues; spec-epic fills it in) -->
-
 <!-- One slice is one commit. If it doesn't fit on one screen, split it. Delete these comments. -->
 
 ## Goal

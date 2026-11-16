@@ -109,14 +109,19 @@ dependencies, stop and start the app again (locally: run `pnpm install` first).
 4. Work on your own branch. Claude creates one per slice. Before starting something new, get your teammates' work: `git checkout main`, then `git pull`.
 5. Share work through **pull requests**: CI checks the code, a teammate reviews it, then you merge it into `main`.
 
-Optional: install the GitHub CLI so Claude can open pull requests and issues for you. On macOS run `brew install gh`, on Windows `winget install --id GitHub.cli`, then `gh auth login` once. Without it, Claude pushes your branch and you open the pull request with the link GitHub shows. Claude always asks before pushing or creating anything on GitHub.
+Two optional commands connect Claude to GitHub:
+
+- `/create-pr`: shares your work as a pull request (branch, checks, push, pull request).
+- `/create-issues-from-epic <feature>`: creates GitHub issues for a plan, one per slice, so the team can divide the work.
+
+They need the GitHub CLI: on macOS run `brew install gh`, on Windows `winget install --id GitHub.cli`, then `gh auth login` once. Without it, `/create-pr` still pushes your branch, and you open the pull request with the link GitHub shows.
 
 ## Working with Claude Code
 
 The repo comes with rules and skills for Claude Code, so it builds features the same way every time:
 
 1. `/spec-epic <idea>`: Claude asks questions, then writes a PRD (what and why), an architecture doc (how) and slices (one commit each) in `docs/planned/<feature>/`.
-2. `/build-slice <feature>`: builds the next slice, with tests, and offers to open a pull request.
+2. `/build-slice <feature>`: builds the next slice, with tests, and commits it.
 3. `/consolidate-epic <feature>`: updates the docs in `docs/system/` and removes the plan.
 
 For small changes, skip the plan and just describe what you want to Claude. The conventions are in `.claude/rules/`, and `docs/README.md` explains the docs.

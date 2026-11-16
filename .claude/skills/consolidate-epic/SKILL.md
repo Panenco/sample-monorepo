@@ -28,4 +28,4 @@ Go through the architecture doc's Decisions and anything else in the folder that
 
 ## 4. Delete the plan
 
-Delete `docs/planned/<feature>/`. Then tell the user what went where (which system docs and ADRs), and commit it as `docs: finish <feature>`. Optional, only if the user wants: share it as a pull request, as described under "GitHub (optional)" in `CLAUDE.md`.
+Delete `docs/planned/<feature>/`. Then tell the user what went where (which system docs and ADRs), and commit it as `docs: finish <feature>`.
