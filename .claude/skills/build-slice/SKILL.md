@@ -40,5 +40,5 @@ Tell the user in a few lines what you'll change and how you'll check it. Start w
 
 - Summarize what changed and how it was checked.
 - Commit the slice, including its ticked slice file, with the message `feat(<feature>): <slice goal>`. One slice is one commit. Don't push.
-- Tell the user they can share it as a pull request with `/create-pr`.
+- If the user asks how to share it with the team, `/create-pr` opens a pull request.
 - Name the next slice. If this was the last one, suggest `/consolidate-epic <feature>`.

@@ -62,7 +62,7 @@ When a controller method grows past about 30 lines, move the logic into a `<feat
 
 ## 4. Test
 
-Add or extend `apps/api/test/<feature>.e2e.test.ts`, copying the setup from `me.e2e.test.ts`. Write a journey: log in, create, list, check the result. Then check that a request without a session gets 401.
+Add or extend `apps/api/test/<feature>.e2e.test.ts`, copying the setup from `me.e2e.test.ts`. Write a journey: log in, create, list, check the result.
 
 ## 5. Make it available to the website
 

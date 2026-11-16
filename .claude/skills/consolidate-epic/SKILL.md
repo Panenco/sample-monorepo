@@ -10,7 +10,7 @@ When every slice is built, the plan in `docs/planned/<feature>/` has done its jo
 
 ## 1. Check it is really done
 
-Every slice file has all its "Done when" boxes ticked, and that work is on `main`. If not, list what's missing and stop.
+Every slice file has all its "Done when" boxes ticked, and that work is committed. If not, list what's missing and stop.
 
 ## 2. Update `docs/system/`
 

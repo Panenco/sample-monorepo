@@ -1,12 +1,12 @@
 ---
 name: spec-epic
-description: Plan a new feature before building it. Grills the user about the idea, then writes a PRD, an architecture doc and slices (one per PR) into docs/planned/<feature>/. Use when the user wants to plan, spec or design a feature, or describes something big to build ("add a booking system", "customers should be able to...").
+description: Plan a new feature before building it. Grills the user about the idea, then writes a PRD, an architecture doc and slices (one commit each) into docs/planned/<feature>/. Use when the user wants to plan, spec or design a feature, or describes something big to build ("add a booking system", "customers should be able to...").
 argument-hint: <feature idea>
 ---
 
 # Plan a feature
 
-Turn an idea into `docs/planned/<feature>/`: a PRD (what and why), an architecture doc (how) and slices (one PR each). `.claude/rules/docs.md` defines what each document contains. This skill is the order of work.
+Turn an idea into `docs/planned/<feature>/`: a PRD (what and why), an architecture doc (how) and slices (one commit each). `.claude/rules/docs.md` defines what each document contains. This skill is the order of work.
 
 Four phases. **Stop after each one** and let the user read and correct it before you start the next. Never run several phases without the user's go.
 

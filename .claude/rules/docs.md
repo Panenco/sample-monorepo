@@ -23,7 +23,7 @@ No other folders. Research and notes that don't fit go nowhere: summarize what m
 2. **Build** (`/build-slice`): one slice at a time, one commit per slice. Slices don't touch `docs/system/`.
 3. **Finish** (`/consolidate-epic`): when every slice is built, update `docs/system/`, turn lasting decisions into ADRs, and delete `docs/planned/<feature>/`.
 
-Plan first when a change needs more than about two slices of work, adds a database table or changes one, or adds a new flow for users. A smaller change skips planning: build it, and update `docs/system/features/` in the same PR if what the product does changed.
+Plan first when a change needs more than about two slices of work, adds a database table or changes one, or adds a new flow for users. A smaller change skips planning: build it, and update `docs/system/features/` in the same commit if what the product does changed.
 
 ## The PRD: what and why
 
