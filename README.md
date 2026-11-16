@@ -103,12 +103,6 @@ dependencies, stop and start the app again (locally: run `pnpm install` first).
 
 ## Working as a team
 
-1. **One person** creates the team's own copy: on GitHub, open this repository, click **Use this template** > **Create a new repository**, and make it private. Don't fork it.
-2. In the new repository, go to **Settings** > **Collaborators** and add your teammates.
-3. **Everyone** clones the team repository (not this one) and follows the setup steps above.
-4. Work on your own branch (`git checkout -b <name>`). `/create-pr` also creates one if you're still on `main`. Before starting something new, get your teammates' work: `git checkout main`, then `git pull`.
-5. Share work through **pull requests**: CI checks the code, a teammate reviews it, then you merge it into `main`.
-
 Two optional commands connect Claude to GitHub:
 
 - `/create-pr`: shares your work as a pull request (branch, checks, push, pull request).
