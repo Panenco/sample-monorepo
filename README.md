@@ -101,16 +101,63 @@ see `API running`, open the website at http://localhost:3000 and log in with
 Code changes on your laptop are picked up automatically. Stop with `Ctrl+C`. If you change
 dependencies, stop and start the app again (locally: run `pnpm install` first).
 
+## Working as a team
+
+1. **One person** creates the team's own copy: on GitHub, open this repository, click **Use this template** > **Create a new repository**, and make it private. Don't fork it.
+2. In the new repository, go to **Settings** > **Collaborators** and add your teammates.
+3. **Everyone** clones the team repository (not this one) and follows the setup steps above.
+4. Work on your own branch (`git checkout -b <name>`). `/create-pr` also creates one if you're still on `main`. Before starting something new, get your teammates' work: `git checkout main`, then `git pull`.
+5. Share work through **pull requests**: CI checks the code, a teammate reviews it, then you merge it into `main`.
+
+Two optional commands connect Claude to GitHub:
+
+- `/create-pr`: shares your work as a pull request (branch, checks, push, pull request).
+- `/create-issues-from-epic <feature>`: creates GitHub issues for a plan, one per slice, so the team can divide the work.
+
+They need the GitHub CLI: on macOS run `brew install gh`, on Windows `winget install --id GitHub.cli`, then `gh auth login` once. Without it, `/create-pr` still pushes your branch, and you open the pull request with the link GitHub shows.
+
+## Working with Claude Code
+
+The repo comes with rules and skills for Claude Code, so it builds features the same way every time:
+
+1. `/spec-epic <idea>`: Claude asks questions, then writes a PRD (what and why), an architecture doc (how) and slices (one commit each) in `docs/planned/<feature>/`.
+2. `/build-slice <feature>`: builds the next slice, with tests, and commits it.
+3. `/consolidate-epic <feature>`: updates the docs in `docs/system/` and removes the plan.
+
+For example:
+
+```text
+/spec-epic customers can book an appointment online and get a confirmation email
+```
+
+Claude asks its questions and proposes a short name for the feature, say `online-booking`. It then writes:
+
+```text
+docs/planned/online-booking/
+├── online-booking-prd.md
+├── online-booking-architecture.md
+└── slices/
+    ├── 01-booking-data.md
+    ├── 02-book-a-slot.md
+    └── 03-confirmation-email.md
+```
+
+`/build-slice online-booking` builds the first slice whose "Done when" boxes aren't all ticked, so running it three times builds 01, 02 and 03 in order. To build one specific slice, give its file: `/build-slice docs/planned/online-booking/slices/02-book-a-slot.md`. When all three are done, `/consolidate-epic online-booking` finishes the feature.
+
+For small changes, skip the plan and just describe what you want to Claude. The conventions are in `.claude/rules/`, and `docs/README.md` explains the docs.
+
 ## What's inside
 
-| Folder                       | What it is                                                          |
-| ---------------------------- | ------------------------------------------------------------------- |
-| `apps/web`                   | The website (Next.js, React, Tailwind)                              |
-| `apps/api`                   | The API (NestJS) with login (better-auth) and the database (Prisma) |
-| `packages/contracts`         | Data shapes (Zod schemas) shared by the API                         |
-| `packages/api-sdk`           | Typed API client for the website, generated from the API            |
-| `packages/typescript-config` | Shared TypeScript settings                                          |
-| `packages/eslint-config`     | Shared code-style rules                                             |
+| Folder                       | What it is                                                                             |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| `apps/web`                   | The website (Next.js, React, Tailwind)                                                 |
+| `apps/api`                   | The API (NestJS) with login (better-auth) and the database (Prisma)                    |
+| `packages/contracts`         | Data shapes (Zod schemas) shared by the API                                            |
+| `packages/api-sdk`           | Typed API client for the website, generated from the API                               |
+| `packages/typescript-config` | Shared TypeScript settings                                                             |
+| `packages/eslint-config`     | Shared code-style rules                                                                |
+| `docs`                       | Plans for features being built, and how the product works today (see `docs/README.md`) |
+| `.claude`                    | Rules and skills that tell Claude Code how to work in this repo                        |
 
 While the app runs, the API documentation is at http://localhost:3001/api/docs. Login, logout and
 sessions are handled by better-auth and documented separately at

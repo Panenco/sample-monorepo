@@ -7,6 +7,47 @@ NestJS API (`apps/api`, port 3001), Postgres (port 5433), shared packages in `pa
 The users are business students, not developers. Explain in plain words, and do things for them
 where you can.
 
+## How we work
+
+Coding conventions live in `.claude/rules/`, one file per area. Claude Code loads each one
+automatically when you touch matching files. Follow them. They are the single source: don't
+repeat them elsewhere.
+
+| Rule          | Applies to                      | About                                                      |
+| ------------- | ------------------------------- | ---------------------------------------------------------- |
+| `general.md`  | everything                      | simplicity, functions, naming, types, errors, env, commits |
+| `testing.md`  | `apps/api/**`, `*.test.ts`      | what and how to test                                       |
+| `api.md`      | `apps/api/**`                   | feature folders, validation, errors, Prisma                |
+| `auth.md`     | auth code, API domains, web app | better-auth, guarded routes, `authClient`                  |
+| `web.md`      | `apps/web/**`                   | client-only pages, data through the SDK, components        |
+| `design.md`   | `apps/web/**/*.tsx`, `*.css`    | Tailwind, responsive, accessibility, states, wording       |
+| `packages.md` | `packages/**`                   | compiled vs source-direct packages, adding a package       |
+| `docs.md`     | `docs/**`                       | PRD, architecture, slices, ADRs, current-state docs        |
+
+Building a feature goes through the docs (`docs/README.md`):
+
+1. `/spec-epic`: grill the idea, then write the PRD, architecture doc and slices in
+   `docs/planned/<feature>/`.
+2. `/build-slice`: build one slice (one commit) at a time, with tests.
+3. `/consolidate-epic`: update `docs/system/`, record lasting decisions as ADRs, delete the plan.
+
+Small changes skip the plan: the user describes what they want in plain words and you build it.
+
+For the building blocks, use the `create-api-endpoint` and `create-nextjs-page` skills yourself,
+both for small changes and inside `/build-slice`. They are for you, not for the user: don't ask
+students to run them or to decide between an endpoint and a page. Commands students can use
+besides the three above: `/grill-me` (stress-test a plan), `/diagnosing-bugs` (when something
+breaks), `/tdd` (test-first), `/code-review <since>` (review a branch against the rules and the plan, e.g. `/code-review main`).
+
+## GitHub (optional)
+
+The workflow skills only commit. Two separate skills connect it to GitHub, for teams that want them:
+
+- `/create-issues-from-epic <feature>`: one GitHub issue for the plan, and one per slice.
+- `/create-pr [issue]`: a branch, a commit, a push and a pull request for the current work.
+
+Use them only when the user asks. Never push, create issues or open pull requests on your own.
+
 ## Starting the app
 
 There are two ways to run it, and they must never run at the same time (same ports):
