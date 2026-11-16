@@ -23,10 +23,10 @@ const FOLDERS = [
 ];
 
 const COMMANDS = [
-  { command: 'docker compose up', text: 'Start everything (database, API and website).' },
+  { command: 'pnpm dev', text: 'Run the app locally. Logs appear in this terminal.' },
   {
-    command: 'pnpm dev',
-    text: 'Start the API and website without Docker (run pnpm db:setup first).',
+    command: 'docker compose --profile app up',
+    text: 'Or run the app in Docker. Logs appear in this terminal.',
   },
   {
     command: 'pnpm generate:sdk',
@@ -104,7 +104,7 @@ export default function HomePage() {
         <ul className="space-y-2 text-sm">
           {COMMANDS.map((item) => (
             <li key={item.command} className="sm:flex sm:gap-4">
-              <code className="shrink-0 rounded bg-slate-100 px-2 py-0.5 sm:w-64">
+              <code className="shrink-0 rounded bg-slate-100 px-2 py-0.5 sm:w-72">
                 {item.command}
               </code>
               <span className="text-slate-600">{item.text}</span>

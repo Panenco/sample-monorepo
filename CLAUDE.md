@@ -9,37 +9,47 @@ where you can.
 
 ## Starting the app
 
-Use Docker unless the user asks for the non-Docker route. It works the same on macOS and Windows.
-On Windows, run commands in PowerShell.
+There are two ways to run it, and they must never run at the same time (same ports):
 
-1. **Check Docker**: `docker info`. If it fails, Docker Desktop is not installed or not running.
+- **Locally**: `pnpm dev` from the repo root. Starts the database in Docker in the background
+  (`pnpm db:setup`: migrations and the admin user), then the API and website in that terminal.
+  Needs Node 24 and pnpm (`pnpm -v`).
+- **In Docker**: `docker compose --profile app up`. Runs the database and the app in containers.
+  Needs only Docker. A plain `docker compose up` starts the database only.
+
+Use the route the user asks for. Otherwise use local if `pnpm -v` works, else Docker. On Windows,
+run commands in PowerShell.
+
+1. **Check Docker** (both routes need it): `docker info`. If it fails, Docker Desktop is not
+   installed or not running.
    - Not installed: ask before installing. macOS: `brew install --cask docker` if Homebrew exists.
      Windows: `winget install -e --id Docker.DockerDesktop`. Otherwise send the user to
      https://www.docker.com/products/docker-desktop/.
    - The user must open Docker Desktop themselves (Windows may need a restart, or `wsl --update`
      in an administrator PowerShell). Ask them to, then run `docker info` again.
-2. **Start in the background**: `docker compose up -d --build`. Never run `docker compose up`
-   without `-d`: it does not exit.
-3. **Wait until ready**: every few seconds, request http://localhost:3001/api/me (returns 401
+2. **Prepare**: for the local route, run `pnpm install`. If pnpm is missing, follow the
+   "Install the tools" step for the user's OS in `README.md`.
+3. **Let the user start it**: the logs (including `console.log` output) appear in the terminal
+   that runs the start command, so ask the user to run `pnpm dev` or
+   `docker compose --profile app up` in their own terminal. Only if they want you to start it,
+   run it in the background (`docker compose --profile app up -d --build` for Docker) and tell
+   them where the logs are: your background task output, or `docker compose logs -f app`.
+4. **Wait until ready**: every few seconds, request http://localhost:3001/api/me (returns 401
    when the API is up) and http://localhost:3000/login (returns 200 when the website is up). On
    Windows use `curl.exe`, not `curl` (an alias for `Invoke-WebRequest` in PowerShell). The first
-   start takes several minutes (it installs dependencies). Don't judge readiness from the logs:
-   they include earlier runs. If it takes over 10 minutes or `docker compose ps` shows the app
-   exited, read `docker compose logs app --tail 100`.
-4. **Hand over**: tell the user to open http://localhost:3000 and log in with **admin / admin**.
-5. **Stop**: `docker compose down` keeps the data. `docker compose down -v` also deletes the
-   database and installed dependencies (confirm with the user first).
-
-Without Docker: follow the "Without Docker" steps for the user's OS in `README.md`. The database
-still runs in Docker (`pnpm db:setup`). Run `pnpm dev` as a background process.
-
-Never run the Docker app and `pnpm dev` at the same time: they use the same ports.
+   Docker start takes several minutes (it installs dependencies). Don't judge readiness from
+   `docker compose logs`: it includes earlier runs.
+5. **Hand over**: tell the user to open http://localhost:3000 and log in with **admin / admin**.
+6. **Stop**: `Ctrl+C` in the terminal that runs it. A Docker app started in the background stops
+   with `docker compose --profile app down` (plain `docker compose down` leaves the app
+   running). Adding `-v` also deletes the database and installed dependencies; confirm with the
+   user first.
 
 ## Running commands
 
+- Local route: run `pnpm <command>` from the repo root.
 - Docker route: prefix commands with `docker compose exec app`, e.g.
   `docker compose exec app pnpm lint`.
-- Without Docker: run `pnpm <command>` from the repo root.
 - After changing an API endpoint: `pnpm generate:sdk` (refreshes the typed client the website uses).
 - After changing `apps/api/prisma/schema.prisma`:
   `pnpm --filter @app/api exec prisma migrate dev --name <what-changed>`.

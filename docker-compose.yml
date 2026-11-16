@@ -14,8 +14,10 @@ services:
       interval: 2s
       retries: 30
 
+  # Only starts with `docker compose --profile app up`; `pnpm dev` runs the app on your laptop instead.
   app:
     build: .
+    profiles: [app]
     depends_on:
       db:
         condition: service_healthy
