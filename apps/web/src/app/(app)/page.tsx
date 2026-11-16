@@ -43,6 +43,21 @@ const FEATURE_STEPS = [
   'Small change? Skip the plan and just describe what you want to Claude Code.',
 ];
 
+const FEATURE_EXAMPLE = [
+  {
+    command: '/spec-epic customers can book an appointment online and get a confirmation email',
+    text: 'Claude asks questions, proposes the name online-booking, and writes docs/planned/online-booking/ with a PRD, an architecture doc and slices 01, 02 and 03.',
+  },
+  {
+    command: '/build-slice online-booking',
+    text: 'Builds the first slice that isn’t done yet. Run it again for the next one: 01, then 02, then 03.',
+  },
+  {
+    command: '/consolidate-epic online-booking',
+    text: 'When all three slices are done: updates docs/system/ and removes the plan.',
+  },
+];
+
 export default function HomePage() {
   const [me, setMe] = useState<MeDtoOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -97,6 +112,17 @@ export default function HomePage() {
             <li key={step}>{step}</li>
           ))}
         </ol>
+        <p className="mt-4 text-sm font-medium">For example</p>
+        <ul className="mt-2 space-y-3 text-sm">
+          {FEATURE_EXAMPLE.map((item) => (
+            <li key={item.command}>
+              <code className="block rounded bg-slate-100 px-2 py-1 break-words">
+                {item.command}
+              </code>
+              <span className="mt-1 block text-slate-600">{item.text}</span>
+            </li>
+          ))}
+        </ul>
       </Card>
 
       <Card title="Everyday commands">

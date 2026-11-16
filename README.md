@@ -124,6 +124,26 @@ The repo comes with rules and skills for Claude Code, so it builds features the 
 2. `/build-slice <feature>`: builds the next slice, with tests, and commits it.
 3. `/consolidate-epic <feature>`: updates the docs in `docs/system/` and removes the plan.
 
+For example:
+
+```text
+/spec-epic customers can book an appointment online and get a confirmation email
+```
+
+Claude asks its questions and proposes a short name for the feature, say `online-booking`. It then writes:
+
+```text
+docs/planned/online-booking/
+├── online-booking-prd.md
+├── online-booking-architecture.md
+└── slices/
+    ├── 01-booking-data.md
+    ├── 02-book-a-slot.md
+    └── 03-confirmation-email.md
+```
+
+`/build-slice online-booking` builds the first slice whose "Done when" boxes aren't all ticked, so running it three times builds 01, 02 and 03 in order. To build one specific slice, give its file: `/build-slice docs/planned/online-booking/slices/02-book-a-slot.md`. When all three are done, `/consolidate-epic online-booking` finishes the feature.
+
 For small changes, skip the plan and just describe what you want to Claude. The conventions are in `.claude/rules/`, and `docs/README.md` explains the docs.
 
 ## What's inside
