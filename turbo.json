@@ -1,0 +1,38 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "globalPassThroughEnv": ["DATABASE_URL", "WEB_URL", "BETTER_AUTH_SECRET", "PORT", "API_URL"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "^generate:sdk"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "env": ["API_URL"]
+    },
+    "dev": {
+      "dependsOn": ["^build", "^generate:sdk"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build", "^generate:sdk"]
+    },
+    "typecheck": {
+      "dependsOn": ["^build", "^generate:sdk"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "generate:sdk": {
+      "dependsOn": ["^generate:sdk"]
+    },
+    "@app/api#generate:sdk": {
+      "dependsOn": ["build"],
+      "outputs": ["openapi.json"]
+    },
+    "@app/api-sdk#generate:sdk": {
+      "dependsOn": ["@app/api#generate:sdk"],
+      "inputs": ["$TURBO_ROOT$/apps/api/openapi.json", "openapi-ts.config.ts"],
+      "outputs": ["src/generated/**"]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    ports:
+      - '5433:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 2s
+      retries: 30
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/app
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    volumes:
+      - .:/repo
+      # Dependencies stay inside Docker, so they never clash with anything installed on your laptop.
+      - node_modules:/repo/node_modules
+      - api_node_modules:/repo/apps/api/node_modules
+      - web_node_modules:/repo/apps/web/node_modules
+      - contracts_node_modules:/repo/packages/contracts/node_modules
+      - api_sdk_node_modules:/repo/packages/api-sdk/node_modules
+      - eslint_config_node_modules:/repo/packages/eslint-config/node_modules
+      - pnpm_store:/pnpm-store
+
+volumes:
+  db_data:
+  node_modules:
+  api_node_modules:
+  web_node_modules:
+  contracts_node_modules:
+  api_sdk_node_modules:
+  eslint_config_node_modules:
+  pnpm_store:

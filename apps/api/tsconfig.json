@@ -1,0 +1,6 @@
+{
+  "extends": "@app/typescript-config/nestjs.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src", "test", "prisma", "prisma.config.ts", "vitest.config.mts"],
+  "exclude": ["node_modules", "dist"]
+}
