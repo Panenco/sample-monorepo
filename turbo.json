@@ -1,6 +1,15 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
-  "globalPassThroughEnv": ["DATABASE_URL", "WEB_URL", "BETTER_AUTH_SECRET", "PORT", "API_URL"],
+  "globalPassThroughEnv": [
+    "DATABASE_URL",
+    "WEB_URL",
+    "BETTER_AUTH_SECRET",
+    "PORT",
+    "API_URL",
+    "WATCHPACK_POLLING",
+    "TSC_WATCHFILE",
+    "TSC_WATCHDIRECTORY"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build", "^generate:sdk"],

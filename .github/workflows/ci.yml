@@ -35,3 +35,19 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm test
+
+  # Some students develop on Windows without Docker; make sure the tooling works there too.
+  # (GitHub's Windows runners cannot run the Postgres service, so tests run in the job above.)
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm build

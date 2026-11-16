@@ -21,6 +21,10 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/app
+      # Hot reload by polling: Docker on Windows does not pass file-change events into the container.
+      WATCHPACK_POLLING: 'true'
+      TSC_WATCHFILE: DynamicPriorityPolling
+      TSC_WATCHDIRECTORY: RecursiveDirectoryUsingDynamicPriorityPolling
     ports:
       - '3000:3000'
       - '3001:3001'

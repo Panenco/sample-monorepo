@@ -5,7 +5,9 @@ with login already working. Build your own product on top of it.
 
 ## Start the app
 
-You only need [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+You only need [Docker Desktop](https://www.docker.com/products/docker-desktop/). This works the
+same on macOS, Windows and Linux. On Windows, keep the default "Use WSL 2" option when installing
+Docker Desktop.
 
 ```sh
 docker compose up
@@ -20,8 +22,9 @@ dependencies or the database schema, restart with `docker compose up` again.
 
 ## Without Docker (optional)
 
-Install Node 24 (see `.nvmrc`) and enable pnpm with `corepack enable`. Docker is still used for
-the database.
+Install [Node.js 24](https://nodejs.org/) (see `.nvmrc`) and enable pnpm with `corepack enable`.
+On Windows, run that one command in a terminal opened as administrator, or use
+`npm install -g pnpm@10.33.0` instead. Docker is still used for the database.
 
 ```sh
 pnpm install
