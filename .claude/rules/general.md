@@ -20,7 +20,7 @@ Applies to every change. The area rules (`api.md`, `web.md`, `testing.md`, ...) 
 ## Naming
 
 - Variables and functions `camelCase`, types and components `PascalCase`, constants `UPPER_SNAKE_CASE`.
-- Files and folders `kebab-case` (`patient-list.tsx`, `use-patients.ts`).
+- Files and folders `kebab-case` (`note-list.tsx`, `use-notes.ts`).
 - Booleans start with `is`, `has` or `should` (`isLoading`, `hasError`).
 - Code is in English, even when the product's language is not.
 

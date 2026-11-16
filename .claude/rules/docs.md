@@ -7,13 +7,13 @@ paths:
 
 ## The folders
 
-| Folder                      | What it holds                                                                            | Lifetime                                    |
-| --------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------- |
-| `docs/planned/<feature>/`   | The plan for one feature that is being built: PRD, architecture, slices                  | Temporary: deleted when the feature is done |
-| `docs/planned/_template/`   | The templates `plan-feature` copies                                                      | Permanent                                   |
-| `docs/system/features/`     | What the product does **today**, one file per capability (`login.md`, `appointments.md`) | Living, always current                      |
-| `docs/system/architecture/` | How the system works **today**, for topics that span several features                    | Living, always current                      |
-| `docs/adr/`                 | Decisions: why we chose X over Y. One file per decision, `NNNN-short-title.md`           | Permanent, never edited                     |
+| Folder                      | What it holds                                                                     | Lifetime                                    |
+| --------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------- |
+| `docs/planned/<feature>/`   | The plan for one feature that is being built: PRD, architecture, slices           | Temporary: deleted when the feature is done |
+| `docs/planned/_template/`   | The templates `plan-feature` copies                                               | Permanent                                   |
+| `docs/system/features/`     | What the product does **today**, one file per capability (`login.md`, `notes.md`) | Living, always current                      |
+| `docs/system/architecture/` | How the system works **today**, for topics that span several features             | Living, always current                      |
+| `docs/adr/`                 | Decisions: why we chose X over Y. One file per decision, `NNNN-title.md`          | Permanent, never edited                     |
 
 No other folders. Research and notes that don't fit go nowhere: summarize what matters in one of the above.
 
@@ -30,9 +30,9 @@ Plan first when a change needs more than about two PRs, adds a database table or
 `<feature>-prd.md` is written from the user's point of view, for someone who doesn't code. About 150 lines at most. Sections:
 
 - **Context**: what is missing or painful today, for whom, and why it matters. The most important section.
-- **Users**: who does what. Plain nouns (practice owner, physiotherapist, patient).
+- **Users**: who does what. Plain nouns (admin, customer, team member).
 - **Flow**: the steps a user takes, as a numbered list (one action or decision per step), plus a Mermaid `flowchart` of the same steps.
-- **Rules**: the conditions, limits and edge cases, grouped under short headings per action. Every rule is testable ("A patient can only book a slot that is still free"), not vague ("booking should be easy").
+- **Rules**: the conditions, limits and edge cases, grouped under short headings per action. Every rule is testable ("Only the person who wrote a note can edit it"), not vague ("booking should be easy").
 - **Out of scope**: what we decided not to do, each with a one-line reason.
 - **Open questions**: functional questions still to answer.
 
@@ -46,7 +46,7 @@ Plan first when a change needs more than about two PRs, adds a database table or
 - **Data**: new or changed Prisma models and fields.
 - **API**: new or changed endpoints and their contract schemas.
 - **Pages**: new or changed pages and what each one shows.
-- **Decisions**: each choice in one line, plus why ("Store notes per appointment, because...").
+- **Decisions**: each choice in one line, plus why ("Store notes per user, because...").
 - **Risks**: what could go wrong or is still uncertain.
 
 ## Slices: the work breakdown
@@ -54,10 +54,11 @@ Plan first when a change needs more than about two PRs, adds a database table or
 Each `slices/NN-<name>.md` is one PR's worth of work, numbered in the order to build them:
 
 - **Vertical**: a slice delivers something a user can see or use, through every layer it needs (contract, API, page). "All the database work, then all the API work" is not a slice.
-- **Exclusive files**: two slices don't change the same file. Slice 01 may be shared groundwork (database models and contracts) when later slices all need it.
+- **Exclusive files**: two slices don't change the same file. Exceptions: one-line registrations (a module in `app.module.ts`, an export in `packages/contracts/src/index.ts`, a link in the header), and slice 01 may be shared groundwork (database models and contracts) when later slices all need it.
 - **Small**: if the slice file doesn't fit on one screen, split it.
+- **Working after each merge**: the app works after every slice on its own. No links or buttons to pages that a later slice builds.
 
-Sections: **Goal** (one sentence), **Rules covered** (which PRD rules), **May touch** (the complete list of files), **May not touch**, **Steps**, **Done when** (checks anyone can verify, such as "`pnpm test` passes and the new journey test covers creating and listing notes").
+Sections: **Goal** (one sentence), **Rules covered** (which PRD rules), **May touch** (the complete list of files, apart from generated ones such as migration folders), **May not touch**, **Steps**, **Done when** (checks anyone can verify, such as "`pnpm test` passes and the new journey test covers creating and listing notes").
 
 ## ADRs: decisions that outlive a feature
 

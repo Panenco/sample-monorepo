@@ -26,6 +26,6 @@ The website is a single-page app: everything runs in the browser and talks to th
 
 ## Components
 
-- A page file stays thin: it combines small components. Feature components go in `src/features/<feature>/`.
+- A page file stays thin: it combines small components. Feature components go in `src/features/<name>/`, named after what they show (`notes`).
 - JSX repeated 3 or more times in a file becomes a small component in that file. Move it to a shared place only when another feature really uses it.
 - Environment variables starting with `NEXT_PUBLIC_` are visible to everyone in the browser. Never put secrets in them.

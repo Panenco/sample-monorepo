@@ -21,21 +21,33 @@ Add a link to it in the header in `apps/web/src/app/(app)/layout.tsx` when users
 ## 3. Load the data
 
 ```tsx
-const [patients, setPatients] = useState<PatientDto[] | null>(null);
+const [notes, setNotes] = useState<NoteDtoOutput[] | null>(null);
 const [error, setError] = useState<string | null>(null);
+const [reloadKey, setReloadKey] = useState(0);
 
 useEffect(() => {
-  patientsControllerList({ client: apiClient, throwOnError: true })
-    .then(({ data }) => setPatients(data))
-    .catch(() => setError('We couldn’t load your patients. Try again.'));
-}, []);
+  notesControllerList({ client: apiClient, throwOnError: true })
+    .then(({ data }) => setNotes(data))
+    .catch(() => setError('We couldn’t load your notes. Try again.'));
+}, [reloadKey]);
+
+// Retry after an error, or refresh after saving: reset, then load again.
+function reload() {
+  setError(null);
+  setNotes(null);
+  setReloadKey((key) => key + 1);
+}
 ```
 
-Render all three states: loading (`patients === null`), empty (`patients.length === 0`, with the action to add one) and error (the message plus a retry).
+Don't reset the state inside `useEffect` itself: the `react-hooks` lint rule rejects it. Reset it in an event handler like `reload`.
+
+The SDK names response types after the DTO plus `Output` (`NoteDto` becomes `NoteDtoOutput`). Request types keep their name (`CreateNoteDto`). Check `packages/api-sdk/src/generated/types.gen.ts`.
+
+Render all three states: loading (`notes === null`), empty (`notes.length === 0`, with the action to add one) and error (the message plus a button that calls `reload`).
 
 ## 4. Components
 
-Put the pieces (list, form, item) in `apps/web/src/features/<feature>/`, one component per file, kebab-case file names. A form:
+Put the pieces (list, form, item) in `apps/web/src/features/<name>/` (named after what they show, such as `notes`), one component per file, kebab-case file names. A form:
 
 - has a visible `<label>` per field
 - disables its submit button while saving

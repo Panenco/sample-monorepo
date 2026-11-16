@@ -24,7 +24,7 @@ paths:
 - Every input has a visible `<label>`. A placeholder is not a label.
 - Icon-only buttons have an `aria-label`. Decorative icons and images get `aria-hidden="true"` or `alt=""`.
 - Text contrast meets WCAG AA (4.5:1 for normal text). Never use color alone to carry meaning: add text or an icon.
-- Sentence case for headings, buttons and labels ("Add patient", not "Add Patient").
+- Sentence case for headings, buttons and labels ("Add note", not "Add Note").
 
 ## Forms, tables and dialogs
 
@@ -32,14 +32,14 @@ paths:
 - Use `autoComplete` on name, email and password fields.
 - One main action per screen or dialog.
 - Tables don't make the page scroll sideways. On small screens they reflow (for example into cards) or scroll inside their own box.
-- Deleting something permanent always asks for confirmation first, and the confirm button says what it does ("Delete patient").
+- Deleting something permanent always asks for confirmation first, and the confirm button says what it does ("Delete note").
 
 ## Loading, empty and error states
 
 Every view that loads data shows all three:
 
-- **Loading:** a placeholder or a specific message ("Loading patients…").
-- **Empty:** what's missing and the action to fix it ("No patients yet. Add your first patient.").
+- **Loading:** a placeholder or a specific message ("Loading notes…").
+- **Empty:** what's missing and the action to fix it ("No notes yet. Add your first note.").
 - **Error:** what went wrong in plain words, plus a way to retry.
 
 ## Writing
