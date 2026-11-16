@@ -38,7 +38,7 @@ const COMMANDS = [
 
 const FEATURE_STEPS = [
   'Describe the data in packages/contracts (for example a Patient schema).',
-  'Add a table for it in apps/api/prisma/schema.prisma and create a migration.',
+  'Add a table for it in apps/api/prisma/schema.prisma, then run pnpm db:migration --name <change>.',
   'Add an endpoint in apps/api/src/domains/<feature>/. Copy domains/me as a starting point.',
   'Run pnpm generate:sdk so the website gets a typed function for the new endpoint.',
   'Add a page in apps/web/src/app/(app)/<feature>/page.tsx that calls that function.',
@@ -117,7 +117,7 @@ export default function HomePage() {
         <ul className="space-y-2 text-sm">
           <li>
             <a
-              href="http://localhost:3001/api/docs"
+              href="/api/docs"
               target="_blank"
               rel="noreferrer"
               className="text-blue-700 underline"

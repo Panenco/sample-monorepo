@@ -131,10 +131,11 @@ Running in Docker? Run these commands inside the app container by putting
 `docker compose exec app` in front, for example `docker compose exec app pnpm generate:sdk`
 (in a second terminal, while the app runs).
 
-Database changes: edit `apps/api/prisma/schema.prisma`, then create a migration:
+Database changes: edit `apps/api/prisma/schema.prisma`, then create a migration (this also
+updates the code the API uses to talk to the database):
 
 ```sh
-pnpm --filter @app/api exec prisma migrate dev --name <what-changed>
+pnpm db:migration --name <what-changed>
 ```
 
 ## Troubleshooting

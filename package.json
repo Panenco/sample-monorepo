@@ -10,6 +10,7 @@
     "test": "turbo run test",
     "generate:sdk": "turbo run generate:sdk",
     "db:setup": "docker compose up -d --wait db && pnpm --filter @app/api db:migrate && pnpm --filter @app/api db:seed",
+    "db:migration": "pnpm --filter @app/api db:migration",
     "format": "prettier --write ."
   },
   "devDependencies": {

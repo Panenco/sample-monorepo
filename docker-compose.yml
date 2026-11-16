@@ -33,6 +33,7 @@ services:
     volumes:
       - .:/repo
       # Dependencies stay inside Docker, so they never clash with anything installed on your laptop.
+      # One volume per workspace package with dependencies; docker/start.sh stops if one is missing.
       - node_modules:/repo/node_modules
       - api_node_modules:/repo/apps/api/node_modules
       - web_node_modules:/repo/apps/web/node_modules

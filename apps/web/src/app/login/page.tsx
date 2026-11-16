@@ -1,11 +1,16 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { authClient } from '@/lib/auth-client';
 
 export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { data: session } = authClient.useSession();
+
+  useEffect(() => {
+    if (session) window.location.assign('/');
+  }, [session]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,12 +23,12 @@ export default function LoginPage() {
       password: String(form.get('password')),
     });
 
-    setIsSubmitting(false);
     if (error) {
+      setIsSubmitting(false);
       setError(error.message ?? 'Login failed. Please try again.');
       return;
     }
-    // A full page load, so the app starts with the fresh session instead of a cached empty one.
+    // Full page load, so the app starts with the fresh session. The button stays disabled meanwhile.
     window.location.assign('/');
   }
 

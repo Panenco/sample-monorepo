@@ -4,6 +4,7 @@ import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { AppModule } from '../src/app.module';
+import { configureApp } from '../src/configure-app';
 import { env } from '../src/env';
 
 // Needs a running, seeded database: `pnpm db:setup` from the repo root.
@@ -12,8 +13,7 @@ describe('GET /api/me', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({ imports: [AppModule] }).compile();
-    app = moduleRef.createNestApplication();
-    app.setGlobalPrefix('api');
+    app = configureApp(moduleRef.createNestApplication());
     await app.init();
   });
 

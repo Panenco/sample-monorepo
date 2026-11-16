@@ -1,49 +1,39 @@
-import { randomUUID } from 'node:crypto';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { hashPassword } from 'better-auth/crypto';
-import { env } from '../src/env';
-import { PrismaClient } from '../src/generated/prisma/client';
+import { createAuth } from '../src/auth/auth';
+import { PrismaService } from '../src/prisma/prisma.service';
 
 const ADMIN = { username: 'admin', password: 'admin', name: 'Admin', email: 'admin@example.com' };
 
+// Creates the admin through better-auth itself, so the stored user and password match what login expects.
 async function seed(): Promise<void> {
-  const prisma = new PrismaClient({
-    adapter: new PrismaPg({ connectionString: env.DATABASE_URL }),
-  });
+  const prisma = new PrismaService();
+  try {
+    const existing = await prisma.user.findUnique({ where: { username: ADMIN.username } });
+    if (existing) {
+      console.log(`User "${ADMIN.username}" already exists, nothing to seed.`);
+      return;
+    }
 
-  const existing = await prisma.user.findUnique({ where: { username: ADMIN.username } });
-  if (existing) {
-    console.log(`User "${ADMIN.username}" already exists, nothing to seed.`);
-    await prisma.$disconnect();
-    return;
-  }
-
-  const now = new Date();
-  const userId = randomUUID();
-  await prisma.user.create({
-    data: {
-      id: userId,
-      name: ADMIN.name,
-      email: ADMIN.email,
-      emailVerified: true,
-      username: ADMIN.username,
-      displayUsername: ADMIN.username,
-      createdAt: now,
-      updatedAt: now,
-      accounts: {
-        create: {
-          id: randomUUID(),
-          accountId: userId,
-          providerId: 'credential',
-          password: await hashPassword(ADMIN.password),
-          createdAt: now,
-          updatedAt: now,
-        },
+    const { internalAdapter, password } = await createAuth(prisma).$context;
+    const user = await internalAdapter.createUser(
+      {
+        name: ADMIN.name,
+        email: ADMIN.email,
+        emailVerified: true,
+        username: ADMIN.username,
+        displayUsername: ADMIN.username,
       },
-    },
-  });
-  console.log(`Created user "${ADMIN.username}" with password "${ADMIN.password}".`);
-  await prisma.$disconnect();
+      { method: 'admin' },
+    );
+    await internalAdapter.linkAccount({
+      userId: user.id,
+      providerId: 'credential',
+      accountId: user.id,
+      password: await password.hash(ADMIN.password),
+    });
+    console.log(`Created user "${ADMIN.username}" with password "${ADMIN.password}".`);
+  } finally {
+    await prisma.$disconnect();
+  }
 }
 
 seed().catch((error: unknown) => {

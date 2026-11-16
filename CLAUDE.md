@@ -51,8 +51,9 @@ run commands in PowerShell.
 - Docker route: prefix commands with `docker compose exec app`, e.g.
   `docker compose exec app pnpm lint`.
 - After changing an API endpoint: `pnpm generate:sdk` (refreshes the typed client the website uses).
-- After changing `apps/api/prisma/schema.prisma`:
-  `pnpm --filter @app/api exec prisma migrate dev --name <what-changed>`.
+- After changing `apps/api/prisma/schema.prisma`: `pnpm db:migration --name <what-changed>`. It
+  regenerates the Prisma client and creates the migration (Prisma 7's `migrate dev` alone does
+  not regenerate the client).
 - Checks: `pnpm lint`, `pnpm typecheck`, `pnpm test` (tests need the database running).
 
 ## Windows notes
