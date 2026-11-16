@@ -148,14 +148,16 @@ For small changes, skip the plan and just describe what you want to Claude. The 
 
 ## What's inside
 
-| Folder                       | What it is                                                          |
-| ---------------------------- | ------------------------------------------------------------------- |
-| `apps/web`                   | The website (Next.js, React, Tailwind)                              |
-| `apps/api`                   | The API (NestJS) with login (better-auth) and the database (Prisma) |
-| `packages/contracts`         | Data shapes (Zod schemas) shared by the API                         |
-| `packages/api-sdk`           | Typed API client for the website, generated from the API            |
-| `packages/typescript-config` | Shared TypeScript settings                                          |
-| `packages/eslint-config`     | Shared code-style rules                                             |
+| Folder                       | What it is                                                                             |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| `apps/web`                   | The website (Next.js, React, Tailwind)                                                 |
+| `apps/api`                   | The API (NestJS) with login (better-auth) and the database (Prisma)                    |
+| `packages/contracts`         | Data shapes (Zod schemas) shared by the API                                            |
+| `packages/api-sdk`           | Typed API client for the website, generated from the API                               |
+| `packages/typescript-config` | Shared TypeScript settings                                                             |
+| `packages/eslint-config`     | Shared code-style rules                                                                |
+| `docs`                       | Plans for features being built, and how the product works today (see `docs/README.md`) |
+| `.claude`                    | Rules and skills that tell Claude Code how to work in this repo                        |
 
 While the app runs, the API documentation is at http://localhost:3001/api/docs. Login, logout and
 sessions are handled by better-auth and documented separately at

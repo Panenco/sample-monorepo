@@ -17,6 +17,14 @@ const FOLDERS = [
     label: 'packages/typescript-config, packages/eslint-config',
     text: 'Shared settings, so every app follows the same rules.',
   },
+  {
+    label: 'docs',
+    text: 'Plans for features being built, and how the product works today. See docs/README.md.',
+  },
+  {
+    label: '.claude',
+    text: 'Rules and skills that tell Claude Code how to work in this repo.',
+  },
 ];
 
 export function WhatsInTheBox() {
