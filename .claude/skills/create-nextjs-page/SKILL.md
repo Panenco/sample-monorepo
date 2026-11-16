@@ -1,5 +1,5 @@
 ---
-name: add-page
+name: create-nextjs-page
 description: Add a page to the website that shows or edits data through the generated API SDK, with loading, empty and error states and a link in the header. Use when the user wants a new screen, page or view in the web app.
 argument-hint: <what the page should show>
 ---
@@ -10,7 +10,7 @@ Conventions are in `.claude/rules/web.md` and `design.md`. Follow them; this is 
 
 ## 1. The data must exist
 
-The page reads and writes through `@app/api-sdk`. If the endpoint it needs doesn't exist yet, build it first with the `add-endpoint` skill and run `pnpm generate:sdk`.
+The page reads and writes through `@app/api-sdk`. If the endpoint it needs doesn't exist yet, build it first with the `create-api-endpoint` skill and run `pnpm generate:sdk`.
 
 ## 2. Route
 

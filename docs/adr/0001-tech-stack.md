@@ -22,6 +22,6 @@ A pnpm + Turborepo monorepo:
 ## Consequences
 
 - A data shape is written once, and TypeScript catches mismatches between the website and the API.
-- Adding an endpoint takes a few more steps (contract, controller, `pnpm generate:sdk`). The `add-endpoint` skill covers them.
+- Adding an endpoint takes a few more steps (contract, controller, `pnpm generate:sdk`). The `create-api-endpoint` skill covers them.
 - The website has no server-side rendering. That's fine for a logged-in app, but public, search-indexed pages would need a different setup.
 - New libraries on the website (data fetching, forms, UI kits) are a decision worth a new ADR.

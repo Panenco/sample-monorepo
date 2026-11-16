@@ -10,7 +10,7 @@ paths:
 | Folder                      | What it holds                                                                     | Lifetime                                    |
 | --------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------- |
 | `docs/planned/<feature>/`   | The plan for one feature that is being built: PRD, architecture, slices           | Temporary: deleted when the feature is done |
-| `docs/planned/_template/`   | The templates `plan-feature` copies                                               | Permanent                                   |
+| `docs/planned/_template/`   | The templates `spec-epic` copies                                                  | Permanent                                   |
 | `docs/system/features/`     | What the product does **today**, one file per capability (`login.md`, `notes.md`) | Living, always current                      |
 | `docs/system/architecture/` | How the system works **today**, for topics that span several features             | Living, always current                      |
 | `docs/adr/`                 | Decisions: why we chose X over Y. One file per decision, `NNNN-title.md`          | Permanent, never edited                     |
@@ -19,9 +19,9 @@ No other folders. Research and notes that don't fit go nowhere: summarize what m
 
 ## A feature's life
 
-1. **Plan** (`/plan-feature`): a grilling session, then `docs/planned/<feature>/` with `<feature>-prd.md`, `<feature>-architecture.md` and `slices/NN-<name>.md`.
+1. **Plan** (`/spec-epic`): a grilling session, then `docs/planned/<feature>/` with `<feature>-prd.md`, `<feature>-architecture.md` and `slices/NN-<name>.md`.
 2. **Build** (`/build-slice`): one slice at a time, one PR per slice. Slice PRs don't touch `docs/system/`.
-3. **Finish** (`/finish-feature`): when every slice is merged, update `docs/system/`, turn lasting decisions into ADRs, and delete `docs/planned/<feature>/`.
+3. **Finish** (`/consolidate-epic`): when every slice is merged, update `docs/system/`, turn lasting decisions into ADRs, and delete `docs/planned/<feature>/`.
 
 Plan first when a change needs more than about two PRs, adds a database table or changes one, or adds a new flow for users. A smaller change skips planning: build it, and update `docs/system/features/` in the same PR if what the product does changed.
 

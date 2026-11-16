@@ -1,5 +1,5 @@
 ---
-name: finish-feature
+name: consolidate-epic
 description: Wrap up a feature whose slices are all built. Updates docs/system to describe what now exists, turns lasting decisions into ADRs, and deletes docs/planned/<feature>/. Use when the user says a feature is done, finished or shipped, or asks to clean up its plan.
 argument-hint: <feature>
 ---

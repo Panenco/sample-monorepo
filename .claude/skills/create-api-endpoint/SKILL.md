@@ -1,5 +1,5 @@
 ---
-name: add-endpoint
+name: create-api-endpoint
 description: Add or change an API endpoint end to end: contract schema, database model and migration, NestJS controller and DTO, journey test, and the regenerated SDK for the website. Use when the user wants the API to store, return or change data ("save notes", "list notes", "add an endpoint").
 argument-hint: <what the endpoint should do>
 ---
@@ -70,4 +70,4 @@ Add or extend `apps/api/test/<feature>.e2e.test.ts`, copying the setup from `me.
 2. `pnpm lint`, `pnpm typecheck` and `pnpm test` pass.
 3. The endpoint shows up in the API docs at http://localhost:3001/api/docs.
 
-Next: show it on a page with the `add-page` skill.
+Next: show it on a page with the `create-nextjs-page` skill.

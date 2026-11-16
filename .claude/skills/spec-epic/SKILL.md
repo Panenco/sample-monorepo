@@ -1,5 +1,5 @@
 ---
-name: plan-feature
+name: spec-epic
 description: Plan a new feature before building it. Grills the user about the idea, then writes a PRD, an architecture doc and slices (one per PR) into docs/planned/<feature>/. Use when the user wants to plan, spec or design a feature, or describes something big to build ("add a booking system", "customers should be able to...").
 argument-hint: <feature idea>
 ---

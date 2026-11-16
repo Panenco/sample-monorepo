@@ -26,12 +26,12 @@ repeat them elsewhere.
 
 Building a feature goes through the docs (`docs/README.md`):
 
-1. `/plan-feature`: grill the idea, then write the PRD, architecture doc and slices in
+1. `/spec-epic`: grill the idea, then write the PRD, architecture doc and slices in
    `docs/planned/<feature>/`.
 2. `/build-slice`: build one slice (one PR) at a time, with tests.
-3. `/finish-feature`: update `docs/system/`, record lasting decisions as ADRs, delete the plan.
+3. `/consolidate-epic`: update `docs/system/`, record lasting decisions as ADRs, delete the plan.
 
-Small changes skip the plan. Skills for the building blocks: `/add-endpoint`, `/add-page`. Also
+Small changes skip the plan. Skills for the building blocks: `/create-api-endpoint`, `/create-nextjs-page`. Also
 available: `/grill-me` (stress-test a plan), `/diagnosing-bugs` (when something breaks), `/tdd`
 (test-first).
 

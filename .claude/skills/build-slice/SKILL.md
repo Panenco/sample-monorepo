@@ -21,7 +21,7 @@ Tell the user in a few lines what you'll change and how you'll check it. Start w
 ## 3. Build
 
 - Change only files listed under **May touch**, plus the slice file itself (to tick its boxes). If you need another file, stop and ask: the plan may need updating.
-- Follow `.claude/rules/` for each area. For the usual building blocks, follow the `add-endpoint` and `add-page` skills.
+- Follow `.claude/rules/` for each area. For the usual building blocks, follow the `create-api-endpoint` and `create-nextjs-page` skills.
 - Fences (these keep slices small and on target):
   - Do the simplest thing that meets "Done when".
   - No options, settings, generics or abstractions nobody asked for.
@@ -41,4 +41,4 @@ Tell the user in a few lines what you'll change and how you'll check it. Start w
 - Summarize what changed and how it was checked.
 - Commit on a branch `<feature>/<NN-name>` with the message `feat(<feature>): <slice goal>`, push it, and open a pull request on GitHub (`gh pr create`, or the link Git prints after the push). Ask before pushing. One slice is one PR.
 - The PR merges into `main` once CI is green and the user, or whoever reviews for them, approves it. The next slice starts after that.
-- Name the next slice. If this was the last one, suggest `/finish-feature <feature>`.
+- Name the next slice. If this was the last one, suggest `/consolidate-epic <feature>`.
