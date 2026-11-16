@@ -1,8 +1,8 @@
 # Third-party notices
 
-The skills `grilling`, `grill-me`, `diagnosing-bugs` and `tdd` are copied unchanged from
+The skills `grilling`, `grill-me`, `diagnosing-bugs`, `tdd` and `code-review` are copied from
 [mattpocock/skills](https://github.com/mattpocock/skills) at commit
-`5863806dd4e15c63174bee4e7515a4256792ecfa` (the `agents/openai.yaml` files are left out), under this license:
+`5863806dd4e15c63174bee4e7515a4256792ecfa` (the `agents/openai.yaml` files are left out). They are unchanged, except that `code-review` drops one line telling the user to run `/setup-matt-pocock-skills`, a setup skill this repo doesn't include. License:
 
 ```
 MIT License

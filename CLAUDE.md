@@ -37,7 +37,7 @@ For the building blocks, use the `create-api-endpoint` and `create-nextjs-page` 
 both for small changes and inside `/build-slice`. They are for you, not for the user: don't ask
 students to run them or to decide between an endpoint and a page. Commands students can use
 besides the three above: `/grill-me` (stress-test a plan), `/diagnosing-bugs` (when something
-breaks), `/tdd` (test-first).
+breaks), `/tdd` (test-first), `/code-review <since>` (review a branch against the rules and the plan, e.g. `/code-review main`).
 
 ## GitHub (optional)
 

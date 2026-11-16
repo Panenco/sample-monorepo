@@ -85,6 +85,10 @@ const SKILL_GROUPS = [
         text: 'A step-by-step hunt for the cause when something breaks.',
       },
       { name: '/tdd', text: 'Build something test-first: a failing test, then the code.' },
+      {
+        name: '/code-review main',
+        text: 'Reviews your changes since main: against the rules in .claude/rules/ and against the plan.',
+      },
     ],
   },
   {
