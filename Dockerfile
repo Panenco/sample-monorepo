@@ -2,7 +2,8 @@
 # Your code is mounted in from your laptop by docker-compose.yml, so nothing is copied here.
 FROM node:24.16.0-slim
 
-RUN apt-get update && apt-get install -y --no-install-recommends openssl \
+# procps provides `ps`, which the API dev server needs to stop the old process when it restarts.
+RUN apt-get update && apt-get install -y --no-install-recommends openssl procps \
   && rm -rf /var/lib/apt/lists/*
 
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
