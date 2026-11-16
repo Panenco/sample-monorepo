@@ -58,6 +58,61 @@ const FEATURE_EXAMPLE = [
   },
 ];
 
+const SKILL_GROUPS = [
+  {
+    title: 'Building a feature',
+    skills: [
+      {
+        name: '/spec-epic <idea>',
+        text: 'Plans a feature: questions, then a PRD, an architecture doc and slices.',
+      },
+      {
+        name: '/build-slice <feature>',
+        text: 'Builds the next slice of a plan, with tests, and commits it.',
+      },
+      {
+        name: '/consolidate-epic <feature>',
+        text: 'Finishes a feature: updates docs/system/ and removes the plan.',
+      },
+    ],
+  },
+  {
+    title: 'Helpers',
+    skills: [
+      { name: '/grill-me', text: 'Claude questions your plan until every decision is made.' },
+      {
+        name: '/diagnosing-bugs',
+        text: 'A step-by-step hunt for the cause when something breaks.',
+      },
+      { name: '/tdd', text: 'Build something test-first: a failing test, then the code.' },
+    ],
+  },
+  {
+    title: 'GitHub (optional, for teams)',
+    skills: [
+      {
+        name: '/create-issues-from-epic <feature>',
+        text: 'Turns a plan into GitHub issues: one for the feature, one per slice.',
+      },
+      {
+        name: '/create-pr [issue]',
+        text: 'Shares your work as a pull request: branch, checks, push.',
+      },
+    ],
+  },
+  {
+    title: 'Used by Claude on its own',
+    skills: [
+      {
+        name: 'create-api-endpoint',
+        text: 'How Claude adds API endpoints. You just describe what you need.',
+      },
+      { name: 'create-nextjs-page', text: 'How Claude adds pages to the website.' },
+      { name: 'grilling', text: 'The questioning behind /grill-me and /spec-epic.' },
+    ],
+  },
+];
+
 export default function HomePage() {
   const [me, setMe] = useState<MeDtoOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -123,6 +178,28 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
+      </Card>
+
+      <Card title="Claude Code skills">
+        <p className="mb-4 text-sm text-slate-600">
+          Type a command in Claude Code to start a skill. The rules in <code>.claude/rules/</code>{' '}
+          apply automatically.
+        </p>
+        <div className="space-y-5">
+          {SKILL_GROUPS.map((group) => (
+            <div key={group.title}>
+              <h3 className="mb-2 text-sm font-medium">{group.title}</h3>
+              <ul className="space-y-2 text-sm">
+                {group.skills.map((skill) => (
+                  <li key={skill.name} className="sm:flex sm:gap-4">
+                    <code className="block shrink-0 break-words sm:w-80">{skill.name}</code>
+                    <span className="text-slate-600">{skill.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </Card>
 
       <Card title="Everyday commands">
