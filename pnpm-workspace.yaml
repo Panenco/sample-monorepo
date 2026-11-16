@@ -18,3 +18,7 @@ peerDependencyRules:
   allowedVersions:
     nestjs-zod>@nestjs/common: '12'
     nestjs-zod>@nestjs/swagger: '12'
+
+overrides:
+  # CVE-2026-118764 (fixed in minimatch 11.0.1); typescript-eslint still asks for minimatch 10.
+  '@typescript-eslint/typescript-estree>minimatch': ^11.0.1
