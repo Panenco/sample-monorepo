@@ -48,6 +48,12 @@
       "dependsOn": ["@app/api#generate:sdk"],
       "inputs": ["$TURBO_ROOT$/apps/api/openapi.json", "openapi-ts.config.ts"],
       "outputs": ["src/generated/**"]
+    },
+    "@app/api-sdk#typecheck": {
+      "dependsOn": ["^build", "generate:sdk"]
+    },
+    "@app/api-sdk#lint": {
+      "dependsOn": ["^build", "generate:sdk"]
     }
   }
 }
