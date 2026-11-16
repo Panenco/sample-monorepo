@@ -114,14 +114,28 @@ export default function HomePage() {
       </Card>
 
       <Card title="Useful links">
-        <a
-          href="http://localhost:3001/api/docs"
-          target="_blank"
-          rel="noreferrer"
-          className="text-sm text-blue-700 underline"
-        >
-          API documentation (Swagger): every endpoint, and you can try them out
-        </a>
+        <ul className="space-y-2 text-sm">
+          <li>
+            <a
+              href="http://localhost:3001/api/docs"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-700 underline"
+            >
+              API documentation (Swagger): your own endpoints, and you can try them out
+            </a>
+          </li>
+          <li>
+            <a
+              href="/api/auth/reference"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-700 underline"
+            >
+              Login documentation: sign in, sign out and sessions (handled by better-auth)
+            </a>
+          </li>
+        </ul>
       </Card>
     </div>
   );

@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { username } from 'better-auth/plugins';
+import { openAPI, username } from 'better-auth/plugins';
 import type { Request } from 'express';
 import { env } from '../env';
 import type { PrismaService } from '../prisma/prisma.service';
@@ -14,7 +14,8 @@ export function createAuth(prisma: PrismaService) {
     secret: env.BETTER_AUTH_SECRET,
     trustedOrigins: [env.WEB_URL],
     emailAndPassword: { enabled: true, disableSignUp: true },
-    plugins: [username()],
+    // openAPI serves documentation for all login endpoints at /api/auth/reference.
+    plugins: [username(), openAPI()],
   });
 }
 

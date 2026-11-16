@@ -112,7 +112,9 @@ dependencies, stop and start the app again (locally: run `pnpm install` first).
 | `packages/typescript-config` | Shared TypeScript settings                                          |
 | `packages/eslint-config`     | Shared code-style rules                                             |
 
-API documentation is available at http://localhost:3001/api/docs while the app runs.
+While the app runs, the API documentation is at http://localhost:3001/api/docs. Login, logout and
+sessions are handled by better-auth and documented separately at
+http://localhost:3000/api/auth/reference.
 
 ## Commands
 
