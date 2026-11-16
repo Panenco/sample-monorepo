@@ -1,0 +1,10 @@
+{
+  "extends": "@app/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "declaration": false,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+  },
+  "include": ["src", "openapi-ts.config.ts"]
+}

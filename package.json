@@ -1,0 +1,20 @@
+{
+  "name": "sample-monorepo",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "pnpm db:setup && turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "generate:sdk": "turbo run generate:sdk",
+    "db:setup": "docker compose up -d --wait db && pnpm --filter @app/api db:migrate && pnpm --filter @app/api db:seed",
+    "db:migration": "pnpm --filter @app/api db:migration",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "turbo": "2.11.8"
+  }
+}

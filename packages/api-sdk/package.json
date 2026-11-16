@@ -1,0 +1,21 @@
+{
+  "name": "@app/api-sdk",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "generate:sdk": "openapi-ts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@app/eslint-config": "workspace:*",
+    "@app/typescript-config": "workspace:*",
+    "@hey-api/openapi-ts": "^0.99.0",
+    "eslint": "^10.14.0",
+    "typescript": "6.0.3"
+  }
+}
