@@ -38,7 +38,7 @@ const COMMANDS = [
 
 const FEATURE_STEPS = [
   'Ask Claude Code to plan it: /spec-epic <your idea>. It asks questions, then writes a PRD, an architecture doc and slices in docs/planned/.',
-  'Build it one slice at a time: /build-slice <feature>. Each slice is one pull request, with tests.',
+  'Build it one slice at a time: /build-slice <feature>. Each slice is one commit, with tests.',
   'When every slice is done: /consolidate-epic <feature>. It updates docs/system/ and cleans up the plan.',
   'Small change? Skip the plan and just describe what you want to Claude Code.',
 ];

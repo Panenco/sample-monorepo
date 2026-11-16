@@ -6,7 +6,7 @@ argument-hint: <feature>
 
 # Finish a feature
 
-When every slice is merged, the plan in `docs/planned/<feature>/` has done its job. Its useful content moves into the permanent docs and the folder goes away. `.claude/rules/docs.md` describes those docs.
+When every slice is built, the plan in `docs/planned/<feature>/` has done its job. Its useful content moves into the permanent docs and the folder goes away. `.claude/rules/docs.md` describes those docs.
 
 ## 1. Check it is really done
 
@@ -28,4 +28,4 @@ Go through the architecture doc's Decisions and anything else in the folder that
 
 ## 4. Delete the plan
 
-Delete `docs/planned/<feature>/`. Then tell the user what went where (which system docs and ADRs), and suggest one PR: `docs: finish <feature>`.
+Delete `docs/planned/<feature>/`. Then tell the user what went where (which system docs and ADRs), and commit it as `docs: finish <feature>`.

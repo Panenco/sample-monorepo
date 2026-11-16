@@ -105,7 +105,7 @@ dependencies, stop and start the app again (locally: run `pnpm install` first).
 
 The repo comes with rules and skills for Claude Code, so it builds features the same way every time:
 
-1. `/spec-epic <idea>`: Claude asks questions, then writes a PRD (what and why), an architecture doc (how) and slices (one pull request each) in `docs/planned/<feature>/`.
+1. `/spec-epic <idea>`: Claude asks questions, then writes a PRD (what and why), an architecture doc (how) and slices (one commit each) in `docs/planned/<feature>/`.
 2. `/build-slice <feature>`: builds the next slice, with tests.
 3. `/consolidate-epic <feature>`: updates the docs in `docs/system/` and removes the plan.
 

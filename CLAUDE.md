@@ -28,7 +28,7 @@ Building a feature goes through the docs (`docs/README.md`):
 
 1. `/spec-epic`: grill the idea, then write the PRD, architecture doc and slices in
    `docs/planned/<feature>/`.
-2. `/build-slice`: build one slice (one PR) at a time, with tests.
+2. `/build-slice`: build one slice (one commit) at a time, with tests.
 3. `/consolidate-epic`: update `docs/system/`, record lasting decisions as ADRs, delete the plan.
 
 Small changes skip the plan: the user describes what they want in plain words and you build it.

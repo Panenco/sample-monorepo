@@ -13,7 +13,7 @@ How the product works today, why it was built this way, and the plans for what's
 ## Building a feature
 
 1. `/spec-epic <idea>`: Claude asks questions, then writes a PRD (what and why), an architecture doc (how) and slices (one PR each) in `planned/<feature>/`.
-2. `/build-slice <feature>`: build the next slice with tests, then open a PR for it. Repeat for each slice, merging each PR before the next.
+2. `/build-slice <feature>`: build the next slice with tests and commit it. Repeat for each slice.
 3. `/consolidate-epic <feature>`: update `system/`, record lasting decisions in `adr/`, delete the plan.
 
-Small changes skip the plan (`.claude/rules/docs.md` says where the line is): build them and update `system/features/` in the same PR.
+Small changes skip the plan (`.claude/rules/docs.md` says where the line is): build them and update `system/features/` in the same commit.

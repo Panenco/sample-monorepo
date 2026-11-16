@@ -60,5 +60,5 @@ Checkpoint: list the slices (number, goal, size) and ask what to change.
 Tell the user:
 
 - which files were written
-- to commit the plan on a branch `<feature>/plan` and merge it as its own PR (`docs: plan <feature>`) before building, so every slice starts from it
+- to commit the plan (`docs: plan <feature>`) before building, so every slice starts from it
 - the next step: `/build-slice docs/planned/<feature>/slices/01-<name>.md`

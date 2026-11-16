@@ -1,6 +1,6 @@
 # 01: <slice name>
 
-<!-- One slice is one PR. If it doesn't fit on one screen, split it. Delete these comments. -->
+<!-- One slice is one commit. If it doesn't fit on one screen, split it. Delete these comments. -->
 
 ## Goal
 

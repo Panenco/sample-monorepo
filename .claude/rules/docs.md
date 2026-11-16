@@ -20,10 +20,10 @@ No other folders. Research and notes that don't fit go nowhere: summarize what m
 ## A feature's life
 
 1. **Plan** (`/spec-epic`): a grilling session, then `docs/planned/<feature>/` with `<feature>-prd.md`, `<feature>-architecture.md` and `slices/NN-<name>.md`.
-2. **Build** (`/build-slice`): one slice at a time, one PR per slice. Slice PRs don't touch `docs/system/`.
-3. **Finish** (`/consolidate-epic`): when every slice is merged, update `docs/system/`, turn lasting decisions into ADRs, and delete `docs/planned/<feature>/`.
+2. **Build** (`/build-slice`): one slice at a time, one commit per slice. Slices don't touch `docs/system/`.
+3. **Finish** (`/consolidate-epic`): when every slice is built, update `docs/system/`, turn lasting decisions into ADRs, and delete `docs/planned/<feature>/`.
 
-Plan first when a change needs more than about two PRs, adds a database table or changes one, or adds a new flow for users. A smaller change skips planning: build it, and update `docs/system/features/` in the same PR if what the product does changed.
+Plan first when a change needs more than about two slices of work, adds a database table or changes one, or adds a new flow for users. A smaller change skips planning: build it, and update `docs/system/features/` in the same PR if what the product does changed.
 
 ## The PRD: what and why
 
@@ -51,12 +51,12 @@ Plan first when a change needs more than about two PRs, adds a database table or
 
 ## Slices: the work breakdown
 
-Each `slices/NN-<name>.md` is one PR's worth of work, numbered in the order to build them:
+Each `slices/NN-<name>.md` is one commit's worth of work, numbered in the order to build them:
 
 - **Vertical**: a slice delivers something a user can see or use, through every layer it needs (contract, API, page). "All the database work, then all the API work" is not a slice.
 - **Exclusive files**: two slices don't change the same file. Exceptions: one-line registrations (a module in `app.module.ts`, an export in `packages/contracts/src/index.ts`, a link in the header), and slice 01 may be shared groundwork (database models and contracts) when later slices all need it.
 - **Small**: if the slice file doesn't fit on one screen, split it.
-- **Working after each merge**: the app works after every slice on its own. No links or buttons to pages that a later slice builds.
+- **Working after each slice**: the app works after every slice on its own. No links or buttons to pages that a later slice builds.
 
 Sections: **Goal** (one sentence), **Rules covered** (which PRD rules), **May touch** (the complete list of files, apart from generated ones such as migration folders), **May not touch**, **Steps**, **Done when** (checks anyone can verify, such as "`pnpm test` passes and the new journey test covers creating and listing notes").
 
