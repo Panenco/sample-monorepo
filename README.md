@@ -109,7 +109,7 @@ The repo comes with rules and skills for Claude Code, so it builds features the 
 2. `/build-slice <feature>`: builds the next slice, with tests.
 3. `/consolidate-epic <feature>`: updates the docs in `docs/system/` and removes the plan.
 
-For small changes, `/create-api-endpoint` and `/create-nextjs-page` cover the building blocks. The conventions are in `.claude/rules/`, and `docs/README.md` explains the docs.
+For small changes, skip the plan and just describe what you want to Claude. The conventions are in `.claude/rules/`, and `docs/README.md` explains the docs.
 
 ## What's inside
 

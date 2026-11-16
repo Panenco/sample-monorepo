@@ -31,9 +31,13 @@ Building a feature goes through the docs (`docs/README.md`):
 2. `/build-slice`: build one slice (one PR) at a time, with tests.
 3. `/consolidate-epic`: update `docs/system/`, record lasting decisions as ADRs, delete the plan.
 
-Small changes skip the plan. Skills for the building blocks: `/create-api-endpoint`, `/create-nextjs-page`. Also
-available: `/grill-me` (stress-test a plan), `/diagnosing-bugs` (when something breaks), `/tdd`
-(test-first).
+Small changes skip the plan: the user describes what they want in plain words and you build it.
+
+For the building blocks, use the `create-api-endpoint` and `create-nextjs-page` skills yourself,
+both for small changes and inside `/build-slice`. They are for you, not for the user: don't ask
+students to run them or to decide between an endpoint and a page. Commands students can use
+besides the three above: `/grill-me` (stress-test a plan), `/diagnosing-bugs` (when something
+breaks), `/tdd` (test-first).
 
 ## Starting the app
 
