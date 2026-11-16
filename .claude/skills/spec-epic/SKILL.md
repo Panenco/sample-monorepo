@@ -57,8 +57,6 @@ Checkpoint: list the slices (number, goal, size) and ask what to change.
 
 ## Done
 
-Tell the user:
-
-- which files were written
-- to commit the plan (`docs: plan <feature>`) before building, so every slice starts from it
-- the next step: `/build-slice docs/planned/<feature>/slices/01-<name>.md`
+1. Commit the plan (`docs: plan <feature>`), so every slice starts from it.
+2. Optional: ask whether the team tracks its work in GitHub issues. Only with a yes, create one issue per slice, as described under "GitHub (optional)" in `CLAUDE.md`. Write `Issue: #<number>` under each slice's title and commit that too.
+3. Tell the user which files were written, and the next step: `/build-slice docs/planned/<feature>/slices/01-<name>.md`.

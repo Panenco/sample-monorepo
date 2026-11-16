@@ -39,6 +39,15 @@ students to run them or to decide between an endpoint and a page. Commands stude
 besides the three above: `/grill-me` (stress-test a plan), `/diagnosing-bugs` (when something
 breaks), `/tdd` (test-first).
 
+## GitHub (optional)
+
+Teams can use GitHub issues and pull requests, but nothing requires them. **Never push, create an issue or open a pull request without asking the user first.**
+
+- **Check the GitHub CLI:** `gh auth status`. If `gh` is missing, the user can install it (macOS `brew install gh`, Windows `winget install --id GitHub.cli`) and run `gh auth login` once, or skip issues.
+- **Issues** (from `spec-epic`): one per slice, with `gh issue create --title "<feature> <NN>: <slice name>" --body "<goal, Done when list, path of the slice file>"`.
+- **Pull requests** (from `build-slice` and `consolidate-epic`): `git push -u origin <branch>`, then `gh pr create --fill` with the slice file's path (and `Closes #<number>` when it has an issue) in the description. Without `gh`, show the user the "Create a pull request" link that GitHub prints after the push.
+- A pull request merges into `main` after CI passes and a teammate approves it.
+
 ## Starting the app
 
 There are two ways to run it, and they must never run at the same time (same ports):

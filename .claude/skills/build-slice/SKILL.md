@@ -1,6 +1,6 @@
 ---
 name: build-slice
-description: Build one slice of a planned feature (docs/planned/<feature>/slices/NN-*.md), staying inside its "May touch" files, with tests, until its "Done when" checks pass, then commit it. Never pushes or opens a pull request. Use when the user wants to build, implement or start a slice or the next step of a planned feature.
+description: Build one slice of a planned feature (docs/planned/<feature>/slices/NN-*.md), staying inside its "May touch" files, with tests, until its "Done when" checks pass, then commit it. Optionally opens a pull request, only when the user asks. Use when the user wants to build, implement or start a slice or the next step of a planned feature.
 argument-hint: <path to slice file, or feature name for the next open slice>
 ---
 
@@ -12,7 +12,7 @@ A slice is one commit's worth of work, described in `docs/planned/<feature>/slic
 
 - The slice file. If you were given a feature name, take the lowest-numbered slice whose "Done when" boxes aren't all ticked.
 - The feature's PRD and architecture doc, for the rules and decisions this slice relies on.
-- Earlier slices must be done: their "Done when" boxes are ticked and their work is committed. If they aren't, say so and stop.
+- Earlier slices must be done: their "Done when" boxes are ticked and their work is committed (merged into `main`, when the team uses pull requests). If they aren't, say so and stop.
 
 ## 2. Plan in one message
 
@@ -39,5 +39,6 @@ Tell the user in a few lines what you'll change and how you'll check it. Start w
 ## 5. Hand over
 
 - Summarize what changed and how it was checked.
-- Commit the slice, including its ticked slice file, with the message `feat(<feature>): <slice goal>`. One slice is one commit. Don't push or open a pull request: the user decides when and how to share the work.
+- Commit the slice, including its ticked slice file, on a branch `<feature>/<NN-name>` with the message `feat(<feature>): <slice goal>`. One slice is one commit.
+- Optional: ask whether to share it with the team as a pull request. Only with a yes, push and open one as described under "GitHub (optional)" in `CLAUDE.md`. If the slice file has an `Issue: #<number>` line, put `Closes #<number>` in the description. Otherwise the commit stays local.
 - Name the next slice. If this was the last one, suggest `/consolidate-epic <feature>`.
