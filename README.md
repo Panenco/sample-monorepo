@@ -3,34 +3,101 @@
 A ready-to-use starting point for building a web application: a website, an API and a database,
 with login already working. Build your own product on top of it.
 
-## Start the app
+Follow the steps for your computer: [macOS](#setup-on-macos) or [Windows](#setup-on-windows).
+The easiest way is with Docker: then Docker is the only thing you install, besides Git.
 
-You only need [Docker Desktop](https://www.docker.com/products/docker-desktop/). This works the
-same on macOS, Windows and Linux. On Windows, keep the default "Use WSL 2" option when installing
-Docker Desktop.
+## Setup on macOS
+
+### 1. Install the tools (once)
+
+1. Install [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/). Pick
+   "Apple Silicon" or "Intel chip" to match your Mac (Apple menu > About This Mac).
+2. Open Docker Desktop and wait until it says Docker is running.
+3. Open the **Terminal** app and run `git --version`. If macOS offers to install the developer
+   tools, accept and wait for it to finish.
+
+### 2. Get the code
+
+```sh
+git clone <repository-url>
+cd sample-monorepo
+```
+
+### 3. Start the app
 
 ```sh
 docker compose up
 ```
+
+Then continue with [When the app is running](#when-the-app-is-running).
+
+### Without Docker (optional, macOS)
+
+You still need Docker Desktop for the database. Install
+[Node.js 24](https://nodejs.org/) with the macOS installer, then in Terminal:
+
+```sh
+sudo corepack enable   # once; asks for your Mac password
+pnpm install
+pnpm db:setup          # starts the database, creates the tables and the admin user
+pnpm dev               # starts the API (port 3001) and the website (port 3000)
+```
+
+## Setup on Windows
+
+### 1. Install the tools (once)
+
+1. Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/). Keep
+   the option "Use WSL 2 instead of Hyper-V" ticked, and restart your computer when asked.
+2. Open Docker Desktop and wait until it says Docker is running. If it asks you to update WSL,
+   open **PowerShell as administrator** (right-click PowerShell in the Start menu) and run
+   `wsl --update`, then restart Docker Desktop.
+3. Install [Git for Windows](https://git-scm.com/download/win). The default options are fine.
+
+Use **PowerShell** for all commands below (Start menu > type "PowerShell").
+
+### 2. Get the code
+
+```powershell
+git clone <repository-url>
+cd sample-monorepo
+```
+
+### 3. Start the app
+
+```powershell
+docker compose up
+```
+
+The first start can take a bit longer on Windows. Then continue with
+[When the app is running](#when-the-app-is-running).
+
+### Without Docker (optional, Windows)
+
+You still need Docker Desktop for the database. Install [Node.js 24](https://nodejs.org/) with the
+Windows installer. Then, once, in **PowerShell as administrator**:
+
+```powershell
+corepack enable
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned   # lets PowerShell run the pnpm command
+```
+
+Close it, open a normal PowerShell in the project folder, and run:
+
+```powershell
+pnpm install
+pnpm db:setup   # starts the database, creates the tables and the admin user
+pnpm dev        # starts the API (port 3001) and the website (port 3000)
+```
+
+## When the app is running
 
 The first start takes a few minutes while it installs everything. When you see
 `API running on http://localhost:3001/api`, open http://localhost:3000 and log in with
 **admin / admin**. The page you land on explains how the project is organised.
 
 Code changes on your laptop are picked up automatically. Stop with `Ctrl+C`. If you change
-dependencies or the database schema, restart with `docker compose up` again.
-
-## Without Docker (optional)
-
-Install [Node.js 24](https://nodejs.org/) (see `.nvmrc`) and enable pnpm with `corepack enable`.
-On Windows, run that one command in a terminal opened as administrator, or use
-`npm install -g pnpm@10.33.0` instead. Docker is still used for the database.
-
-```sh
-pnpm install
-pnpm db:setup   # starts the database, creates the tables and the admin user
-pnpm dev        # starts the API (port 3001) and the website (port 3000)
-```
+dependencies or the database schema, start it again with `docker compose up`.
 
 ## What's inside
 
@@ -78,6 +145,12 @@ in its terminal, or `docker compose down`. To find what is using a port:
 lsof -i :3000                   # macOS / Linux
 netstat -ano | findstr :3000    # Windows
 ```
+
+**Windows: "running scripts is disabled on this system"** when you type `pnpm`: run
+`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once in PowerShell, then try again.
+
+**Windows: Docker Desktop says WSL is missing or outdated**: run `wsl --update` in PowerShell as
+administrator, restart your computer, and open Docker Desktop again.
 
 **"Module not found" after pulling new code**: someone added a dependency. Restart with
 `docker compose up` (it installs them), or run `pnpm install` without Docker.
