@@ -61,3 +61,28 @@ Database changes: edit `apps/api/prisma/schema.prisma`, then create a migration:
 ```sh
 docker compose exec app pnpm --filter @app/api exec prisma migrate dev --name <what-changed>
 ```
+
+## Troubleshooting
+
+**"Cannot connect to the Docker daemon"**: Docker Desktop is not running. Start it and try again.
+
+**"port is already allocated" or "address already in use"**: another program is already using
+port 3000 (website), 3001 (API) or 5433 (database). Often it is the app itself, started twice:
+run it either with Docker or with `pnpm dev`, not both at once. Stop the other one with `Ctrl+C`
+in its terminal, or `docker compose down`. To find what is using a port:
+
+```sh
+lsof -i :3000                   # macOS / Linux
+netstat -ano | findstr :3000    # Windows
+```
+
+**"Module not found" after pulling new code**: someone added a dependency. Restart with
+`docker compose up` (it installs them), or run `pnpm install` without Docker.
+
+**Start over from scratch**: this deletes the database and everything installed, then the next
+`docker compose up` rebuilds it all, including the admin user.
+
+```sh
+docker compose down -v
+docker compose up --build
+```
