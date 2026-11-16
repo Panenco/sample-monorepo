@@ -10,7 +10,7 @@ async function bootstrap(): Promise<void> {
   app.setGlobalPrefix('api');
   SwaggerModule.setup('api/docs', app, buildOpenApiDocument(app));
   await app.listen(env.PORT);
-  console.log(`API running on http://localhost:${env.PORT}/api (docs: /api/docs)`);
+  console.log(`API running. Documentation: http://localhost:${env.PORT}/api/docs`);
 }
 
 void bootstrap();

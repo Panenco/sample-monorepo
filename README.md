@@ -95,7 +95,7 @@ Then continue with [When the app is running](#when-the-app-is-running).
 ## When the app is running
 
 The first start takes a while (a few minutes in Docker) while it installs everything. When you
-see `API running on http://localhost:3001/api`, open http://localhost:3000 and log in with
+see `API running`, open the website at http://localhost:3000 and log in with
 **admin / admin**. The page you land on explains how the project is organised.
 
 Code changes on your laptop are picked up automatically. Stop with `Ctrl+C`. If you change
