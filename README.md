@@ -101,6 +101,16 @@ see `API running`, open the website at http://localhost:3000 and log in with
 Code changes on your laptop are picked up automatically. Stop with `Ctrl+C`. If you change
 dependencies, stop and start the app again (locally: run `pnpm install` first).
 
+## Working with Claude Code
+
+The repo comes with rules and skills for Claude Code, so it builds features the same way every time:
+
+1. `/plan-feature <idea>`: Claude asks questions, then writes a PRD (what and why), an architecture doc (how) and slices (one pull request each) in `docs/planned/<feature>/`.
+2. `/build-slice <feature>`: builds the next slice, with tests.
+3. `/finish-feature <feature>`: updates the docs in `docs/system/` and removes the plan.
+
+For small changes, `/add-endpoint` and `/add-page` cover the building blocks. The conventions are in `.claude/rules/`, and `docs/README.md` explains the docs.
+
 ## What's inside
 
 | Folder                       | What it is                                                          |

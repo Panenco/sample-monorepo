@@ -37,11 +37,10 @@ const COMMANDS = [
 ];
 
 const FEATURE_STEPS = [
-  'Describe the data in packages/contracts (for example a Patient schema).',
-  'Add a table for it in apps/api/prisma/schema.prisma, then run pnpm db:migration --name <change>.',
-  'Add an endpoint in apps/api/src/domains/<feature>/. Copy domains/me as a starting point.',
-  'Run pnpm generate:sdk so the website gets a typed function for the new endpoint.',
-  'Add a page in apps/web/src/app/(app)/<feature>/page.tsx that calls that function.',
+  'Ask Claude Code to plan it: /plan-feature <your idea>. It asks questions, then writes a PRD, an architecture doc and slices in docs/planned/.',
+  'Build it one slice at a time: /build-slice <feature>. Each slice is one pull request, with tests.',
+  'When every slice is done: /finish-feature <feature>. It updates docs/system/ and cleans up the plan.',
+  'Small change? Skip the plan and use /add-endpoint and /add-page directly.',
 ];
 
 export default function HomePage() {
